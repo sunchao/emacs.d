@@ -57,6 +57,8 @@
 (setq make-backup-files -1)
 (setq-default show-trailing-whitespace -1)
 (hl-line-mode -1)
+(setq fill-column 80) ;; 70 -> 80
+
 
 ;; give duplicated buffer name more information
 (require 'uniquify)
@@ -95,3 +97,4 @@
 (require 'csun-haskell)
 (require 'csun-clisp)
 (require 'csun-clojure)
+(require 'csun-ruby)
