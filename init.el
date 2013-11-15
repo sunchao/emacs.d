@@ -18,13 +18,11 @@
                       clojure-mode
                       clojure-test-mode
                       paredit
-                      color-theme-solarized
                       nrepl))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
-
 
 ;; for mac
 
@@ -33,15 +31,15 @@
  (macosx-p
   (setq mac-option-modifier 'super) ;; mac-specific key binding
   (setq mac-command-modifier 'meta)
-  (set-face-font 'default "Courier")
-  (set-face-attribute 'default nil :height 130)
+  (set-face-font 'default "Inconsolata")
+  (set-face-attribute 'default nil :height 160)
   )
  )
 
 ;; set default frame position and size
 (add-to-list 'default-frame-alist '(cursor-type . box))
 (add-to-list 'default-frame-alist '(left . 130))
-(add-to-list 'default-frame-alist '(height . 71))
+(add-to-list 'default-frame-alist '(height . 62))
 (add-to-list 'default-frame-alist '(width . 180))
 
 ;; fix path issues when launching emacs GUI under Mac
@@ -55,12 +53,18 @@
 ;; configuration on faces.
 ;(set-face-font 'default "Liberation Mono")
 ;(set-face-attribute 'default nil :width 'condensed :height 100)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; change meta key. For Ubuntu only!
+(setq x-super-keysym 'meta)
+
+;; configuration on faces.
 
 ;; add to exec path
 (setenv "PATH" (concat (getenv "PATH") (concat ":" (getenv "HOME") "/cmd")))
 (setq exec-path (append exec-path '(concat (getenv "HOME") "/cmd")))
 (setq exec-path (append exec-path '("/usr/local/bin")))
-
 
 
 ;; set tab width
@@ -84,6 +88,17 @@
 (column-number-mode t) ;; show column number
 (tool-bar-mode -1) ;; don't show tool bar
 (menu-bar-mode -1) ;; don't show menu bar
+
+;; starting up options
+(setq max-lisp-eval-depth 50000)
+(setq max-specpdl-size 100000)
+(setq efault-major-mode 'text-mode) ;; set default mode to be text
+(show-paren-mode t) ;; show parenthesis matchup
+(line-number-mode t) ;; show line number
+(column-number-mode t) ;; show column number
+(tool-bar-mode -1) ;; show tool bar
+(menu-bar-mode t)
+
 (setq x-select-enable-clipboard t) ;; don't know what's this
 (auto-fill-mode nil) ;; set auto fill
 (setq visible-bell t) ;; turn on visible bell instead of audible one
@@ -103,6 +118,9 @@
 (global-set-key (kbd "C-c C-v") 'compile)
 (global-set-key (kbd "C-c C-r") 'query-replace)
 (global-set-key (kbd "C-c C-e") 'comment-region)
+
+;; aliases
+(defalias 'qrr 'query-and-replace)
 
 ;; highlight long lines
 ;; (setq whitespace-style '(trailing lines space-before-tab
