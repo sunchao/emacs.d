@@ -2,7 +2,7 @@
 (defun my-ruby-compile()
   "Compile Ruby program"
   (interactive)
-  (compile (concat "/usr/bin/ruby " (buffer-name))))
+  (compile (concat "ruby " (buffer-name))))
 
 (defun my-compile-ruby-keys ()
   (local-set-key (kbd "C-c C-c") 'my-ruby-compile))

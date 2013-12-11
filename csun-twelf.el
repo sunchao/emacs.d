@@ -1,13 +1,14 @@
 (setq twelf-root "/afs/cs.uwm.edu/package/twelf/twelf-1.5R3/")
+;(setq twelf-root "/usr/local/twelf/twelf-1.5R3/")
 
 ;; make the variable more recognizable
+(setq twelf-font-dark-background nil)
 (load (concat twelf-root "emacs/twelf-init.el"))
 (load (concat twelf-root "emacs/twelf-font.el"))
 
 (defun brown-vars ()
   (twelf-font-create-face 'twelf-font-evar-face 'default "brown"))
-(brown-vars)
-(setq twelf-font-dark-background nil)
+; (brown-vars)
 
 (add-hook
  'twelf-mode-hook
